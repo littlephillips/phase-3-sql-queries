@@ -1,0 +1,65 @@
+Top-Tip: In sqlite3, you can format the output of your select statements with a few helpful options:
+
+.headers on      # output the name of each column
+.mode column     # now we are in column mode, enabling us to run the next two .width commands
+.width auto      # adjusts and normalizes column width
+# or
+.width NUM1, NUM2 # customize column width
+
+
+
+SQL QUERY 
+ :: Refers to any SQL statement that retrives data from your database.
+ like the , SELECT keyword
+
+
+Creating our Database
+  sqlite3 pets_database.db
+
+ORDER BY
+This modifier allows us to order the table rows returned by a certain SELECT statement
+  :: SELECT column_name FROM table_name ORDER BY column_name ASC|DESC;
+
+default is ASC 
+
+LIMIT 
+-  to determine the number of records to retrieve from a dataset
+If we want to select extremes from a database table — for example, the employee with the highest 
+paycheck or the patient with the most recent appointment — 
+we can use ORDER BY in conjunction with LIMIT.
+  :: SELECT * FROM cats ORDER BY age DESC LIMIT 1;
+
+BETWEEN
+to retrieverecords that contain  a value that is within a given range
+let's say we urgently need to select all of the cats whose age is between 1 and 3 IN our Database
+  :: SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
+
+NULL
+ add data with missing values using the NULL keyword to the database
+  :: INSERT INTO table_name (column_name's) VALUES (NULL, NULL, "Tabby");
+selecting the null data
+SELECT * FROM table_name WHERE column_name IS NULL;
+
+COUNT
+SQL aggregate function 
+to count the number of RECORDS that meet a certain condition
+ we can retrieve minimum and maximum values from a column, sum values in a column, get the average of a column's values,
+ or count a number of records that meet certain conditions
+  :: SELECT COUNT([column name]) FROM [table name] WHERE [column name] = [value]
+
+
+GROUP BY ...aggregate function
+ to group your results according to the values in a given column 
+ use case : if we had a larger database where we couldn't easily see the number of cats grouped by breed?
+  :: SELECT breed, COUNT(breed) FROM cats GROUP BY breed;
+
+
+Note on SELECT
+
+SELECT name FROM cats;
+However, you may not know that this can be written like this as well:
+
+SELECT cats.name FROM cats;
+
+
+
